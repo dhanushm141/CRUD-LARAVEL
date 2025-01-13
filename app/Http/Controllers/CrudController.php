@@ -6,6 +6,7 @@ use App\Models\crudModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 Use Alert;
+use DB;
 
 class CrudController extends Controller
 {
@@ -15,11 +16,15 @@ class CrudController extends Controller
 
 
     public function index()
+
     {
+    //   DB::enableQueryLog();
        $index=crudModel::all();
 
-
-        return view('index',compact('index'));
+    //    $queries = DB::getQueryLog($index);
+    //    dd($queries);
+ 
+        return view('index',['index'=>$index]);
     }
 
     
