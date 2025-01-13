@@ -28,39 +28,35 @@
       </tr>
     </thead>
     <tbody>
-      @if ($index)
-        {{-- @foreach ($index as $index) --}}
+        @foreach ($index as $list)
         <tr>
-            <th scope="row">{{$index->id}}</th>
-            {{-- <td>{{$index->name}}</td> --}}
-            <td>{{ ucwords(strtolower($index->name)) }}</td>
-            <td>{{$index->email}}</td>
-            <td>{{$index->mobile}}</td>
-            {{-- <td>{{$index->birthdate}}</td> --}}
-            <td>{{ \Carbon\Carbon::parse($index->birthdate)->format('d-m-Y') }}</td>
-            <td>{{$index->gender}}</td>
-            <td>{{$index->country}}</td>
+            <th scope="row">{{$list->id}}</th>
+            {{-- <td>{{$list->name}}</td> --}}
+            <td>{{ ucwords(strtolower($list->name)) }}</td>
+            <td>{{$list->email}}</td>
+            <td>{{$list->mobile}}</td>
+            {{-- <td>{{$list->birthdate}}</td> --}}
+            <td>{{ \Carbon\Carbon::parse($list->birthdate)->format('d-m-Y') }}</td>
+            <td>{{$list->gender}}</td>
+            <td>{{$list->country}}</td>
             <td>
                   {{-- Edit button --}}
-               <a href="{{route('post.edit',$index->id)}}"><button type="submit" class="btn btn-outline-primary">Edit</button></a>
+               <a href="{{route('post.edit',$list->id)}}"><button type="submit" class="btn btn-outline-primary">Edit</button></a>
 
                   {{-- Delete button --}}
-               <form action="{{ route('post.destroy', $index->id) }}"  method="POST" style="display: inline;" id="deleteform">
+               <form action="{{ route('post.destroy', $list->id) }}"  method="POST" style="display: inline;" id="deleteform">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger btn-delete" onclick="confirmDelete(event)" id="del-btn" >Delete</button>
             </form>
 
                  {{-- View button --}}
-               <a href="{{route('post.show',$index->id)}}"><button type="submit" class="btn btn-outline-info">View</button></a>
+               <a href="{{route('post.show',$list->id)}}"><button type="submit" class="btn btn-outline-info">View</button></a>
             </td>
           </tr>  
-        @else
-    <tr>
-        <td colspan="8" class="text-center">No students found</td>
-    </tr>
-@endif
 
+              
+          @endforeach
     </tbody>
   </table>
 

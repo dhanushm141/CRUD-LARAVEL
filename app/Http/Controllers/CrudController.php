@@ -19,14 +19,14 @@ class CrudController extends Controller
 
     {
     //   DB::enableQueryLog();
-     //  $index=crudModel::all();
+     //  $index=crudModel::all();   
 
-     $index=crudModel::where('name','LIKE','d%')->first();
+     $index=crudModel::whereNull('password')->get();
      
 
     //    $queries = DB::getQueryLog($index);
     //    dd($queries);
-             return view('index',['index'=>$index]);
+             return view('index',compact('index'));
     }
 
     
