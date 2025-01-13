@@ -38,6 +38,12 @@
                 <span class="text-danger">{{$message}}</span>
             @enderror
             </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" name="password_confirmation" >
+                @error('password_confirmation')
+                    <span class="text-danger">{{$message}}</span>
+                @enderror
         @endif
             <div class="mb-3 d-flex grid gap-3 ">
                 <label for="" class="form-label">Gender</label>

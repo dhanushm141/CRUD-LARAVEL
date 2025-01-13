@@ -21,7 +21,7 @@ class CrudController extends Controller
     //   DB::enableQueryLog();
      //  $index=crudModel::all();   
 
-     $index=crudModel::whereNotNull('password')->get();
+     $index=crudModel::all();
      
 
     //    $queries = DB::getQueryLog($index);
@@ -152,6 +152,7 @@ class CrudController extends Controller
             'password' => [
                 'sometimes', 
                 'min:8',
+                'confirmed',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/'
             ],
         ],[
