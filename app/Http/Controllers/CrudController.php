@@ -21,7 +21,7 @@ class CrudController extends Controller
     //   DB::enableQueryLog();
      //  $index=crudModel::all();   
 
-     $index=crudModel::whereNull('password')->get();
+     $index=crudModel::whereNotNull('password')->get();
      
 
     //    $queries = DB::getQueryLog($index);
