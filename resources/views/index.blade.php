@@ -8,13 +8,15 @@
 </head>
 <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <body>
    
     <br>
+    <div class="d-flex justify-content-between">
     <a href="{{route('post.create')}}"><button class="btn btn-outline-primary">Add Student</button></a>
-    <br> <br>
-<table class="table">
+    <a href="{{route('deleted.records')}}"><button class="btn btn-outline-danger">Deleted Records</button></a>
+  </div>
+    <br>
+<table class="table table-bordered table-hover"">
     <thead>
       <tr>
         <th scope="col">Id</th>
@@ -65,7 +67,7 @@
 
   <script>
   function confirmDelete(event) {
-    event.preventDefault(); // Prevent the form from submitting right away
+    event.preventDefault(); 
     
     Swal.fire({
         title: "Are you sure?",

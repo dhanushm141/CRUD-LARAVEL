@@ -218,4 +218,30 @@ class CrudController extends Controller
          return redirect('/post');
     }
 
+
+
+    public function deletedRecords()
+    {
+
+       $deletedRecords = CrudModel::onlyTrashed()->get();
+
+       return view('restore', compact('deletedRecords'));
+     }
+
+
+
+
+    public function restore($id)
+    {
+        $record = CrudModel::withTrashed()->find($id);
+
+        if ($record) 
+        {
+            $record->restore();
+            return redirect()->route('post.index')->with('alert', 'Record restored successfully!');
+        }
+
+        return redirect()->route('post.index')->with('alert', 'Record not found!');
+    }
+ 
 }
