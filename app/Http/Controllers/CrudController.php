@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 Use Alert;
 use DB;
+use Illuminate\Support\Facades\Hash;
 
 class CrudController extends Controller
 {
@@ -64,12 +65,12 @@ class CrudController extends Controller
             'mobile' => 'required|numeric',
             'birthdate' => 'required|date',
             'username' => 'required|string',
-            // 'password' => [
-            //     'required',
-            //     'min:8',
-            //     'confirmed',
-            //     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/'
-            // ],
+            'password' => [
+                'required',
+                'min:8',
+                'confirmed',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/'
+            ],
             'gender' => 'required|string',
             'country' => 'required|in:India,SriLanka,Others',
         ]);
@@ -87,7 +88,7 @@ class CrudController extends Controller
             $insert->mobile=$request->mobile;
             $insert->birthdate=$request->birthdate;
             $insert->username=$request->username;
-            $insert->password=$request->password;
+            $insert->password = Hash::make($request->password); 
             $insert->gender=$request->gender;
             $insert->country=$request->country;
 
