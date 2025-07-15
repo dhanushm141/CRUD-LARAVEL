@@ -8,13 +8,12 @@ RUN a2enmod rewrite
 
 WORKDIR /var/www/html
 
-COPY . /var/www/html
+COPY . .
 
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-RUN composer install --optimize-autoloader --no-dev
+RUN composer install --optimize-autoloader --no-dev \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 storage
 
 EXPOSE 80
