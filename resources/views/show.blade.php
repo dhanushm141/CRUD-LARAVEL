@@ -1,47 +1,48 @@
 @extends('app')
 
 @section('content')
-
-{{-- <h1>
-     {{$show->name}}
-</h1> --}}
-
-<div class='row'>
-    <div class='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
-
-    <div class="mb-3">
-   <center>     <table>
-            <tr>
-               <td><h3><label for="">Name:</label> </td>  
-                <td><h3>{{$show->name}}</h2></td>
-            </tr>
-            <tr>
-                <td><h3><label for="">E-mail:</label></td> 
-                <td><h3>{{$show->email}}</td>
-            </tr>
-            <tr>
-                <td><h3><label for="">Mobile:</label></td> 
-                <td><h3>{{$show->mobile}}</td>
-            </tr>
-            <tr>
-                <td><h3><label for="">Birth Date:</label></td> 
-                <td><h3>{{\Carbon\Carbon::parse($show->birthdate)->format('d-m-Y') }}</td>
-            </tr>
-            <tr>
-                <td><h3><label for="">Username:</label></td> 
-                <td><h3>{{$show->username}}</td>
-            </tr>
-            <tr>
-                <td><h3><label for="">Gender:</label></td> 
-                <td><h3>{{$show->gender}}</td>
-            </tr>
-            <tr>
-                <td><h3><label for="">Country:</label></td> 
-                <td><h3>{{$show->country}}</td>
-            </tr>
-        </table></center>
-<br><br>
-      <center> <a href="/post"><button class="btn btn-outline-danger">Close</button></a></center> 
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-header bg-primary text-white text-center rounded-top-4">
+                    <h3 class="mb-0">Student Details</h3>
+                </div>
+                <div class="card-body px-5 py-4">
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 fw-semibold text-secondary">Name:</label>
+                        <div class="col-sm-8">{{ $show->name }}</div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 fw-semibold text-secondary">E-mail:</label>
+                        <div class="col-sm-8">{{ $show->email }}</div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 fw-semibold text-secondary">Mobile:</label>
+                        <div class="col-sm-8">{{ $show->mobile }}</div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 fw-semibold text-secondary">Birth Date:</label>
+                        <div class="col-sm-8">{{ \Carbon\Carbon::parse($show->birthdate)->format('d-m-Y') }}</div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 fw-semibold text-secondary">Username:</label>
+                        <div class="col-sm-8">{{ $show->username }}</div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 fw-semibold text-secondary">Gender:</label>
+                        <div class="col-sm-8">{{ $show->gender }}</div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 fw-semibold text-secondary">Country:</label>
+                        <div class="col-sm-8">{{ $show->country }}</div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-center rounded-bottom-4">
+                    <a href="{{ route('post.index') }}" class="btn btn-outline-secondary px-4">Close</a>
+                </div>
+            </div>
+        </div>
     </div>
-    
+</div>
 @endsection

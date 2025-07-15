@@ -19,12 +19,14 @@ class CrudController extends Controller
 
     {
     //   DB::enableQueryLog();
-       $index=crudModel::all();
+     //  $index=crudModel::all();   
+
+     $index=crudModel::all();
+     
 
     //    $queries = DB::getQueryLog($index);
     //    dd($queries);
- 
-        return view('index',['index'=>$index]);
+             return view('index',compact('index'));
     }
 
     
@@ -150,6 +152,7 @@ class CrudController extends Controller
             'password' => [
                 'sometimes', 
                 'min:8',
+                'confirmed',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/'
             ],
         ],[
@@ -215,4 +218,30 @@ class CrudController extends Controller
          return redirect('/post');
     }
 
+
+
+    public function deletedRecords()
+    {
+
+       $deletedRecords = CrudModel::onlyTrashed()->get();
+
+       return view('restore', compact('deletedRecords'));
+     }
+
+
+
+
+    public function restore($id)
+    {
+        $record = CrudModel::withTrashed()->find($id);
+
+        if ($record) 
+        {
+            $record->restore();
+            return redirect()->route('post.index')->with('alert', 'Record restored successfully!');
+        }
+
+        return redirect()->route('post.index')->with('alert', 'Record not found!');
+    }
+ 
 }
